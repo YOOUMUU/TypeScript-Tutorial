@@ -1,46 +1,19 @@
-// explicit types 明确类型
-let character: string;
-let age: number;
-let isLoggedIn: boolean;
+let age: any = 25;
 
-// age = "luigi"; //error
-age = 30;
-isLoggedIn = true;
-
-// arrays
-let ninjas: string[] = [];
-// 初始化数组为空数组，才可以用数组方法如push
-
-ninjas.push("shaun");
-// ninjias = [0, 1]; //error
-ninjas = ["mario", "yoshi"];
-
-// union types 联合类型
-let mixed: (string | number)[] = [];
-mixed.push("hello");
-mixed.push(0);
-
-// 单个变量
-let uid: string | number;
-uid = "123";
-uid = 12;
-// uid = false; //error
-
-// objects
-let ninjaOne: object;
-ninjaOne = { name: "yoshi", age: 30 };
-ninjaOne = []; //数组是特殊的对象
-// ninjaOne = ""; //error
-
-// 明确变量是对象，并指定对象内部属性的类型
-let ninjaTwo: {
-  name: string;
-  age: number;
-  beltColor: string;
+age = true;
+age = "hello";
+age = {
+  name: "luigi",
 };
 
-ninjaTwo = {
-  name: "mario",
-  age: 30,
-  beltColor: "blue",
+let mixed: any[] = [];
+mixed.push(5);
+mixed.push("mario");
+mixed.push(false);
+
+let ninja: {
+  name: any;
+  age: any;
 };
+ninja = { name: "yoshi", age: 25 };
+ninja = { name: 25, age: "yoshi" };
