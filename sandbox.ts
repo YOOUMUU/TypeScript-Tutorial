@@ -1,47 +1,46 @@
-///////// Arrays
-let names = ["luigi", "mario", "yoshi"];
+// explicit types 明确类型
+let character: string;
+let age: number;
+let isLoggedIn: boolean;
 
-// 变量类型不能变
-// names = "hello"; //error
+// age = "luigi"; //error
+age = 30;
+isLoggedIn = true;
 
-// 我们分配给该数组的类型之后不能更改
-// 如果最初的数组只有字符串，后面就只允许加入字符串
-names.push("toad");
-// names.push(3); //error
-// names[0] = 3; //error
-// names = [0, 1]; //error
+// arrays
+let ninjas: string[] = [];
+// 初始化数组为空数组，才可以用数组方法如push
 
-let numbers = [10, 20, 30, 40];
+ninjas.push("shaun");
+// ninjias = [0, 1]; //error
+ninjas = ["mario", "yoshi"];
 
-numbers.push(25);
-// numbers.push("shaun"); //error
-// numbers[0] = "shaun"; //error
+// union types 联合类型
+let mixed: (string | number)[] = [];
+mixed.push("hello");
+mixed.push(0);
 
-// 混合数组可以加入这里面有的类型
-let mixed = ["ken", 4, "chun-li", 8, 9];
-mixed.push("ryu");
-mixed.push(10);
-mixed[0] = 3; // 原来的字符串改成数字也ok
-// mixed.push(false); //error
+// 单个变量
+let uid: string | number;
+uid = "123";
+uid = 12;
+// uid = false; //error
 
-////////// Ojects
-let ninja = {
-  name: "mario",
-  belt: "black",
-  age: 30,
+// objects
+let ninjaOne: object;
+ninjaOne = { name: "yoshi", age: 30 };
+ninjaOne = []; //数组是特殊的对象
+// ninjaOne = ""; //error
+
+// 明确变量是对象，并指定对象内部属性的类型
+let ninjaTwo: {
+  name: string;
+  age: number;
+  beltColor: string;
 };
 
-// 同样的，object里面的属性也是不能改类型的。从一开始就定好了。
-ninja.age = 40;
-ninja.name = "ryu";
-// ninja.age = "30"; //error
-
-// 也不能加属性
-// ninja.skills = ['fighting','sneaking']; //eroor
-
-// 重新赋值对象的时候，也要一样的格式、一样的属性名称，属性不能多也不能少
-ninja = {
-  name: "yoshi",
-  belt: "orange",
-  age: 34,
+ninjaTwo = {
+  name: "mario",
+  age: 30,
+  beltColor: "blue",
 };
