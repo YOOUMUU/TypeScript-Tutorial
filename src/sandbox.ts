@@ -1,35 +1,31 @@
-// 自动赋类型为function
-let great = () => {
-  console.log("hello, world");
+// let greet: Function;
+
+// example 1
+let greet: (a: string, b: string) => void; //ab只是说这里有两个参数，也可以用任何字母或词代替
+
+greet = (name: string, greeting: string) => {
+  console.log(`${name} says ${greeting}`);
+};
+// 这里的参数类型要和签名（signature）（上面那个）匹配
+
+// example 2
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (numOne: number, numTwo: number, action: string) => {
+  if (action === "add") {
+    return numOne + numTwo;
+  } else {
+    // 因为一定要return数字，所以没有else也会error
+    return numOne - numTwo;
+  }
 };
 
-// great = "hello"; //error
+// example 3
+let logDetails: (obj: { name: string; age: number }) => void;
 
-let great2: Function; // F要大写
+// 结合type aliases别名
+type person = { name: string; age: number };
 
-great2 = () => {
-  console.log("hello,world");
+logDetails = (ninja: person) => {
+  console.log(`${ninja.name} is ${ninja.age} years old`);
 };
-
-// 设置可选参数
-const add = (a: number, b: number, c?: number | string) => {
-  console.log(a + b);
-  console.log(c); //undefined
-};
-
-// 设置参数默认值
-const add2 = (a: number, b: number, c: number | string = 10) => {
-  console.log(a + b);
-  console.log(c);
-};
-
-add(5, 10);
-add(5, 10, "10");
-
-// return 会自动推断并设置返回值的类型，上面没有return的function会自动返回void（空）
-const minus = (a: number, b: number) => {
-  return a + b;
-};
-
-let result = minus(10, 7);
-// result = ""; //error
