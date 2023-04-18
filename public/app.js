@@ -1,19 +1,28 @@
 "use strict";
-const anchor = document.querySelector("a");
-console.log(anchor);
-// console.log(anchor.href); // ts不知道anchor是不是null，所以type不确定，会有error
-// 方法一：加上if
-if (anchor) {
-    console.log(anchor.href);
+// classes
+class Invoice {
+    // 用constructor初始化这些值
+    constructor(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+    format() {
+        return `${this.client} owes $${this.amount} for ${this.details}`;
+    }
 }
-// 方法二：在queryselector后面加感叹号(告诉ts这个我知道它存在肯定不是null)
-const anchor2 = document.querySelector("a");
-console.log(anchor2.href);
-// ts知道这个变量是HTMLAnchorElement，所以鼠标悬停会有提示，可以自动匹配对应的method
-// const form = document.querySelector("form")!;
+const invOne = new Invoice("mario", "work on the mario website", 250);
+const invTwo = new Invoice("luigi", "work on the luigi website", 300);
+let invoices = []; // 只有用了Invoice class创建的对象才能加进这个数组
+// invoices.push('hello') //error
+invoices.push(invOne);
+invoices.push(invTwo);
+console.log(invoices);
+// 默认情况下创建的class的属性都是可以更改的：
+invOne.client = "yoshi";
+invTwo.amount = 400;
+console.log(invOne, invTwo);
 const form = document.querySelector(".new-item-form");
-// 如果用class等进行选择，ts会不知道这是个什么特殊元素，所以要告诉它，然后用as就不用感叹号了，因为知道有东西不会是null
-// console.log(form.children);
 // inputs
 const type = document.querySelector("#type");
 const tofrom = document.querySelector("#tofrom");
@@ -21,5 +30,5 @@ const details = document.querySelector("#details");
 const amount = document.querySelector("#amount");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(type.value, tofrom.value, details.value, amount.valueAsNumber); //valueAsNumber让input的值的类型变成number
+    console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
