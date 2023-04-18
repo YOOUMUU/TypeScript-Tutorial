@@ -1,3 +1,31 @@
+// interfaces
+interface IsPerson {
+  name: string;
+  age: number;
+  speak(a: string): void;
+  spend(a: number): number;
+}
+// 不用来创造object，只是拿来规范object的结构
+
+const me: IsPerson = {
+  name: "shuan",
+  age: 30,
+  speak(text: string): void {
+    console.log(text);
+  },
+  spend(amount: number) {
+    console.log("I spent", amount);
+    return amount;
+  },
+};
+
+let someone: IsPerson; // 未来的值要符合IsPerson的结构
+
+// interface确保了这个对象的未来的属性
+const greetPerson = (person: IsPerson) => {
+  console.log("hello", person.name);
+};
+
 import { Invoice } from "./classes/Invoice.js";
 
 const invOne = new Invoice("mario", "work on the mario website", 250);
