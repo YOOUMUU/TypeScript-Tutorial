@@ -41,39 +41,27 @@ form.addEventListener("submit", (e: Event) => {
 
   let doc: HasFormatter;
 
+  let values: [string, string, number];
+  values = [tofrom.value, details.value, amount.valueAsNumber];
+
   if (type.value === "invoice") {
-    doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    doc = new Invoice(...values);
   } else {
-    doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    doc = new Payment(...values);
   }
 
   list.render(doc, type.value, "end");
 });
 
-// Enums
-// 名称对应数字代表索引位置
-enum ResourceType {
-  BOOK,
-  AUTHOR,
-  FILM,
-  DIRECTOR,
-  PERSON,
-}
+// Tuples
+// array是不用管类型的顺序的
+let arr = ["ryu", 25, true];
+arr[0] = false;
+arr = [30, false, "yoshi"];
 
-interface Resource<T> {
-  uid: number;
-  resourceType: number;
-  data: T;
-}
+let tup: [string, number, boolean] = ["ryu", 35, true];
+tup[0] = "ken";
+// tup[0] = 30; // error
 
-const doc1: Resource<string[]> = {
-  uid: 2,
-  resourceType: ResourceType.BOOK, // 值是0，因为索引是0
-  data: ["haha", "wuwu"],
-};
-
-const doc2: Resource<object> = {
-  uid: 2,
-  resourceType: ResourceType.FILM, // 2
-  data: { name: "shaun" },
-};
+let student: [string, number];
+student = ["shun-li", 234];
